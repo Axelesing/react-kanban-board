@@ -33,14 +33,14 @@ export function useTaskModal() {
     })
 
   // Обработчики для полей формы
-  const onUserChange = useCallback(
+  const handleUserChange = useCallback(
     (value: Item | null | undefined) => {
-      createFieldHandlers('user').onChange(value)
+      createFieldHandlers('user').onChange(value ?? null)
     },
     [createFieldHandlers],
   )
 
-  const onStatusChange = useCallback(
+  const handleStatusChange = useCallback(
     (status: TaskStatus) => {
       createFieldHandlers('status').onChange(status)
     },
@@ -53,8 +53,8 @@ export function useTaskModal() {
       values,
       isValid,
       createFieldHandlers,
-      onUserChange,
-      onStatusChange,
+      onUserChange: handleUserChange,
+      onStatusChange: handleStatusChange,
       onClose: closeWithoutSave,
       onRemove: removeAndClose,
       onSave: saveAndClose,

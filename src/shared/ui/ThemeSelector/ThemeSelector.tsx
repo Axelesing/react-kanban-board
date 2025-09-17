@@ -10,7 +10,7 @@ import {
   Switch,
 } from '@mui/material'
 
-import { useTheme } from '@/shared/lib'
+import { useTheme, cn } from '@/shared/lib'
 import type { ThemeMode } from '@/shared/model'
 
 interface ThemeSelectorProps {
@@ -52,7 +52,12 @@ export const ThemeSelector = memo<ThemeSelectorProps>(
           flexDirection: 'column',
           gap: 2,
         }}
-        className={className}
+        className={cn(
+          'theme-selector',
+          !showTitle && 'theme-selector--no-title',
+          !showAutoMode && 'theme-selector--no-auto-mode',
+          className,
+        )}
       >
         {showTitle && (
           <Typography variant="h6" component="h2" fontWeight="bold">

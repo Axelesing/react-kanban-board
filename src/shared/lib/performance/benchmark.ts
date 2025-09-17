@@ -13,14 +13,18 @@ export function benchmark<T>(
   iterations = 1,
 ): BenchmarkResult {
   const start = performance.now()
-  const startMemory = (performance as any).memory?.usedJSHeapSize
+  const startMemory = (
+    performance as Performance & { memory?: { usedJSHeapSize: number } }
+  ).memory?.usedJSHeapSize
 
   for (let i = 0; i < iterations; i++) {
     fn()
   }
 
   const end = performance.now()
-  const endMemory = (performance as any).memory?.usedJSHeapSize
+  const endMemory = (
+    performance as Performance & { memory?: { usedJSHeapSize: number } }
+  ).memory?.usedJSHeapSize
 
   return {
     name,
@@ -38,14 +42,18 @@ export async function benchmarkAsync<T>(
   iterations = 1,
 ): Promise<BenchmarkResult> {
   const start = performance.now()
-  const startMemory = (performance as any).memory?.usedJSHeapSize
+  const startMemory = (
+    performance as Performance & { memory?: { usedJSHeapSize: number } }
+  ).memory?.usedJSHeapSize
 
   for (let i = 0; i < iterations; i++) {
     await fn()
   }
 
   const end = performance.now()
-  const endMemory = (performance as any).memory?.usedJSHeapSize
+  const endMemory = (
+    performance as Performance & { memory?: { usedJSHeapSize: number } }
+  ).memory?.usedJSHeapSize
 
   return {
     name,

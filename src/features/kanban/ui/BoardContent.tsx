@@ -2,6 +2,13 @@ import { memo } from 'react'
 import { Container } from '@mui/material'
 import { DndContext } from '@dnd-kit/core'
 import type { Column, Task } from '@/shared/constants/kanban'
+import type {
+  DragStartEvent,
+  DragEndEvent,
+  DragCancelEvent,
+} from '@dnd-kit/core'
+import type { SensorDescriptor, SensorOptions } from '@dnd-kit/core'
+import type { CollisionDetection } from '@dnd-kit/core'
 import { BoardHeader } from './BoardHeader'
 import { BoardColumns } from './BoardColumns'
 import { BoardDragOverlay } from './BoardDragOverlay'
@@ -14,11 +21,11 @@ interface BoardContentProps {
   showFilter: boolean
   activeTask: Task | null
   dndContextProps: {
-    sensors: any
-    collisionDetection: any
-    onDragStart: (event: any) => void
-    onDragEnd: (event: any) => void
-    onDragCancel: () => void
+    sensors: SensorDescriptor<SensorOptions>[]
+    collisionDetection: CollisionDetection
+    onDragStart: (event: DragStartEvent) => void
+    onDragEnd: (event: DragEndEvent) => void
+    onDragCancel: (event: DragCancelEvent) => void
   }
   onToggleFilter: () => void
   onAddTask: (task: Task) => void

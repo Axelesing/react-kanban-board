@@ -1,5 +1,4 @@
-import { render } from '@/shared/lib'
-import { screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@/shared/lib/test/render'
 import { ThemeProvider } from '@mui/material/styles'
 import { createTheme } from '@mui/material/styles'
 import { SearchInput } from '../SearchInput'

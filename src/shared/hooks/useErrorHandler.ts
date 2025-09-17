@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { logger } from '@/shared/lib'
 import { $$notifications } from '@/shared/model'
+import { toErrorType, isError } from '@/shared/types/errors'
 
 interface UseErrorHandlerOptions {
   showNotifications?: boolean
@@ -15,8 +16,14 @@ export function useErrorHandler(options: UseErrorHandlerOptions = {}) {
 
   const handleError = useCallback(
     (error: unknown, context: string, userMessage?: string) => {
+      const errorObj = toErrorType(error)
+
       if (logErrors) {
-        logger.error(`Error in ${context}`, error as Error, { context })
+        logger.error(
+          `Error in ${context}`,
+          isError(errorObj) ? errorObj : new Error(errorObj.message),
+          { context },
+        )
       }
 
       if (showNotifications && userMessage) {

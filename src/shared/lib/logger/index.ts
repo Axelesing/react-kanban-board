@@ -9,7 +9,7 @@ interface LogEntry {
   level: LogLevel
   message: string
   timestamp: Date
-  context?: Record<string, unknown>
+  context?: Record<string, string | number | boolean>
   error?: Error
 }
 
@@ -42,7 +42,7 @@ class Logger {
   private log(
     level: LogLevel,
     message: string,
-    context?: Record<string, unknown>,
+    context?: Record<string, string | number | boolean>,
     error?: Error,
   ): void {
     if (!this.shouldLog(level)) return
@@ -73,22 +73,31 @@ class Logger {
     }
   }
 
-  debug(message: string, context?: Record<string, unknown>): void {
+  debug(
+    message: string,
+    context?: Record<string, string | number | boolean>,
+  ): void {
     this.log(LogLevel.DEBUG, message, context)
   }
 
-  info(message: string, context?: Record<string, unknown>): void {
+  info(
+    message: string,
+    context?: Record<string, string | number | boolean>,
+  ): void {
     this.log(LogLevel.INFO, message, context)
   }
 
-  warn(message: string, context?: Record<string, unknown>): void {
+  warn(
+    message: string,
+    context?: Record<string, string | number | boolean>,
+  ): void {
     this.log(LogLevel.WARN, message, context)
   }
 
   error(
     message: string,
     error?: Error,
-    context?: Record<string, unknown>,
+    context?: Record<string, string | number | boolean>,
   ): void {
     this.log(LogLevel.ERROR, message, context, error)
   }

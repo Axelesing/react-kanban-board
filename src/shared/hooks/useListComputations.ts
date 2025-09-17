@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-interface UseListComputationsOptions<T extends Record<string, any>> {
+interface UseListComputationsOptions<T extends Record<string, unknown>> {
   items: T[]
   computeStats?: boolean
   computeTotals?: boolean
@@ -10,7 +10,7 @@ interface UseListComputationsOptions<T extends Record<string, any>> {
 /**
  * Хук для мемоизированных вычислений над списками
  */
-export function useListComputations<T extends Record<string, any>>({
+export function useListComputations<T extends Record<string, unknown>>({
   items,
   computeStats = true,
   computeTotals = false,
@@ -30,13 +30,13 @@ export function useListComputations<T extends Record<string, any>>({
     if (!computeTotals || items.length === 0) return null
 
     const numericFields = Object.keys(items[0] || {}).filter(
-      (key) => typeof (items[0] as any)?.[key] === 'number',
+      (key) => typeof (items[0] as Record<string, unknown>)?.[key] === 'number',
     ) as (keyof T)[]
 
     return numericFields.reduce(
       (totals, field) => {
         totals[field] = items.reduce((sum: number, item) => {
-          const value = item[field] as unknown as number
+          const value = item[field] as number
           return sum + (isNaN(value) ? 0 : value)
         }, 0)
         return totals
@@ -64,13 +64,13 @@ export function useListComputations<T extends Record<string, any>>({
   const flattened = useMemo(() => {
     return items.flatMap((item) => {
       const arrayFields = Object.keys(item as object).filter((key) =>
-        Array.isArray((item as any)[key]),
+        Array.isArray((item as Record<string, unknown>)[key]),
       ) as (keyof T)[]
 
       if (arrayFields.length === 0) return [item]
 
       return arrayFields.flatMap((field) =>
-        ((item[field] as unknown as any[]) || []).map((nestedItem) => ({
+        ((item[field] as unknown[]) || []).map((nestedItem) => ({
           ...item,
           [field]: nestedItem,
         })),

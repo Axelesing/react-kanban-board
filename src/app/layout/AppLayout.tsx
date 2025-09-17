@@ -22,6 +22,7 @@ export function AppLayout() {
                 textDecoration: 'none',
                 fontWeight: 500,
               }}
+              aria-label="Перейти на главную страницу"
             >
               Board
             </Link>
@@ -32,6 +33,7 @@ export function AppLayout() {
                 textDecoration: 'none',
                 fontWeight: 500,
               }}
+              aria-label="Перейти на страницу о приложении"
             >
               About
             </Link>
@@ -42,6 +44,7 @@ export function AppLayout() {
                 textDecoration: 'none',
                 fontWeight: 500,
               }}
+              aria-label="Перейти на страницу настроек темы"
             >
               Theme
             </Link>

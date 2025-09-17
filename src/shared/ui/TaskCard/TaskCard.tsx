@@ -4,6 +4,7 @@ import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import type { Task } from '@/shared/constants/kanban'
 import { pxToRem, BORDERS } from '@/shared/lib/converters'
+import { cn } from '@/shared/lib'
 
 interface TaskCardProps {
   'task': Task
@@ -28,7 +29,11 @@ export const TaskCard = memo<TaskCardProps>(
   }) => {
     return (
       <Card
-        className={className}
+        className={cn(
+          'task-card',
+          onClick && 'task-card--clickable',
+          className,
+        )}
         style={style}
         sx={{
           'cursor': onClick ? 'pointer' : 'default',

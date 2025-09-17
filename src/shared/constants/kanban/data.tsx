@@ -97,7 +97,7 @@ export const INITIAL_COLUMNS = JSON.stringify([
   },
   {
     id: STATUSES.inProgress.id,
-    title: STATUSES.inProgress.id,
+    title: STATUSES.inProgress.title,
     tasks: [
       {
         id: '4',
@@ -114,7 +114,7 @@ export const INITIAL_COLUMNS = JSON.stringify([
   },
   {
     id: STATUSES.done.id,
-    title: STATUSES.done.id,
+    title: STATUSES.done.title,
     tasks: [
       {
         id: '5',

@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { IconButton, Tooltip } from '@mui/material'
 import { LightMode, DarkMode, Settings } from '@mui/icons-material'
 
-import { useTheme } from '@/shared/lib'
+import { useTheme, cn } from '@/shared/lib'
 
 interface ThemeToggleProps {
   size?: 's' | 'm' | 'l'
@@ -91,7 +91,12 @@ export const ThemeToggle = memo<ThemeToggleProps>(
           onClick={handleClick}
           size={size === 's' ? 'small' : size === 'l' ? 'large' : 'medium'}
           aria-label={getTitle()}
-          className={className}
+          className={cn(
+            'theme-toggle',
+            `theme-toggle--${size}`,
+            autoMode && 'theme-toggle--auto',
+            className,
+          )}
         >
           <IconComponent />
         </IconButton>

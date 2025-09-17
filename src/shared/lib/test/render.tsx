@@ -51,3 +51,4 @@ interface RenderParams {
 type WithProvider = (children: React.ReactNode) => React.ReactNode
 
 export { render }
+export * from '@testing-library/react'

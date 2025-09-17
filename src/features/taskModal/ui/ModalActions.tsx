@@ -10,6 +10,10 @@ type ModalActionsProps = {
 
 export const ModalActions = memo<ModalActionsProps>(
   ({ onClose, onRemove, onSave, disableSave }: ModalActionsProps) => {
+    const handleClose = () => onClose()
+    const handleRemove = () => onRemove()
+    const handleSave = () => onSave()
+
     return (
       <Box
         sx={{
@@ -27,7 +31,7 @@ export const ModalActions = memo<ModalActionsProps>(
         <Button
           size="large"
           variant="outlined"
-          onClick={onClose}
+          onClick={handleClose}
           aria-label="Закрыть модальное окно"
         >
           Закрыть
@@ -36,7 +40,7 @@ export const ModalActions = memo<ModalActionsProps>(
           size="large"
           variant="outlined"
           color="error"
-          onClick={onRemove}
+          onClick={handleRemove}
           aria-label="Удалить задачу"
         >
           Удалить
@@ -44,7 +48,7 @@ export const ModalActions = memo<ModalActionsProps>(
         <Button
           size="large"
           variant="contained"
-          onClick={onSave}
+          onClick={handleSave}
           disabled={disableSave}
           aria-label="Сохранить изменения"
         >

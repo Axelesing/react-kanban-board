@@ -1,5 +1,4 @@
-import { render } from '@/shared/lib'
-import { screen } from '@testing-library/react'
+import { render, screen } from '@/shared/lib/test/render'
 import { ThemeProvider } from '@mui/material/styles'
 import { createTheme } from '@mui/material/styles'
 import { ThemeSelector } from '../ThemeSelector'

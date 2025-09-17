@@ -13,9 +13,9 @@ export function useModalState(options: UseModalStateOptions = {}) {
   const { initialOpen = false } = options
 
   const [isOpen, setIsOpen] = useState(initialOpen)
-  const [data, setData] = useState<any>(null)
+  const [data, setData] = useState<object | null>(null)
 
-  const open = useCallback((modalData?: any) => {
+  const open = useCallback((modalData?: object) => {
     setData(modalData || null)
     setIsOpen(true)
   }, [])
@@ -26,7 +26,7 @@ export function useModalState(options: UseModalStateOptions = {}) {
   }, [])
 
   const toggle = useCallback(
-    (modalData?: any) => {
+    (modalData?: object) => {
       if (isOpen) {
         close()
       } else {

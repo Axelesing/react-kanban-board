@@ -3,10 +3,10 @@ import { TaskStatus } from '@/shared/constants/kanban/data'
 import type { Item, TaskFormData } from '@/features/taskModal'
 
 type FieldHandler = {
-  value: any
+  value: TaskFormData[keyof TaskFormData]
   error: string | null
   status: 'default' | 'alert' | 'success'
-  onChange: (value: any) => void
+  onChange: (value: TaskFormData[keyof TaskFormData]) => void
   onBlur: () => void
 }
 

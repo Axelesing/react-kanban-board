@@ -12,10 +12,10 @@ interface UseTaskModalFormProps {
 }
 
 type FieldHandler = {
-  value: any
+  value: TaskFormData[keyof TaskFormData]
   error: string | null
   status: 'default' | 'alert' | 'success'
-  onChange: (value: any) => void
+  onChange: (value: TaskFormData[keyof TaskFormData]) => void
   onBlur: () => void
 }
 
@@ -66,7 +66,8 @@ export function useTaskModalForm({
         value: values[fieldName],
         error: getFieldError(fieldName) || null,
         status: status === 'alert' || status === 'success' ? status : 'default',
-        onChange: (value: any) => setFieldValue(fieldName, value ?? null),
+        onChange: (value: TaskFormData[keyof TaskFormData]) =>
+          setFieldValue(fieldName, value ?? null),
         onBlur: () => formValidation.handleBlur(fieldName),
       }
     },

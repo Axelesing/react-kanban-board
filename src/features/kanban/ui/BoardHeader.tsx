@@ -16,6 +16,10 @@ interface BoardHeaderProps {
  */
 export const BoardHeader = memo<BoardHeaderProps>(
   ({ totalTasks, showFilter, onToggleFilter, onAddTask }) => {
+    const handleToggleFilter = useStableCallback(() => {
+      onToggleFilter()
+    }, [onToggleFilter])
+
     const handleAddTask = useStableCallback(() => {
       const newTask: Task = {
         id: `task-${Date.now()}`,
@@ -54,7 +58,7 @@ export const BoardHeader = memo<BoardHeaderProps>(
           <Button
             size="small"
             variant={showFilter ? 'contained' : 'outlined'}
-            onClick={onToggleFilter}
+            onClick={handleToggleFilter}
           >
             {showFilter
               ? BUTTON_LABELS.HIDE_FILTERS

@@ -28,7 +28,7 @@ export function usePerformance() {
 /**
  * Хук для создания стабильных ссылок на функции (альтернативная реализация)
  */
-export function useStableCallbackAlt<T extends (...args: any[]) => any>(
+export function useStableCallbackAlt<T extends (...args: never[]) => unknown>(
   callback: T,
   deps: React.DependencyList,
 ): T {
@@ -46,7 +46,7 @@ export function useStableCallbackAlt<T extends (...args: any[]) => any>(
 /**
  * Хук для создания стабильных объектов (альтернативная реализация)
  */
-export function useStableObjectAlt<T extends Record<string, any>>(
+export function useStableObjectAlt<T extends Record<string, unknown>>(
   obj: T,
   deps: React.DependencyList,
 ): T {
@@ -66,7 +66,7 @@ export function useStableArrayAlt<T>(
 /**
  * Хук для отложенного выполнения
  */
-export function useDeferredExecution<T extends (...args: any[]) => any>(
+export function useDeferredExecution<T extends (...args: never[]) => unknown>(
   callback: T,
   delay: number,
 ): T {

@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react'
+import { renderHook, act } from '@/shared/lib/test/render'
 import {
   useDebounce,
   useThrottle,
